@@ -1,13 +1,13 @@
 ---
 title: ASP.NET Core Middleware - Write a Custom Middleware in Web API
 tags:
-  - Asp.NET Core 1.0
+  - Asp.NET Core
   - 'C#'
   - middleware
 url: 497.html
 id: 497
 categories:
-  - ASP.NET Core 1.0
+  - ASP.NET Core
 date: 2016-06-09 20:38:01
 ---
 

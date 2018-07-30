@@ -1,11 +1,11 @@
 ---
 title: User Secrets - Storing sensitive data in ASP.NET Core projects
 tags:
-  - Asp.NET Core 1.0
+  - Asp.NET Core
 url: 480.html
 id: 480
 categories:
-  - ASP.NET Core 1.0
+  - ASP.NET Core
 date: 2016-05-31 21:05:49
 ---
 

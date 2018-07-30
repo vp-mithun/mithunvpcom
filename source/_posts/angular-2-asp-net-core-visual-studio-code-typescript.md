@@ -1,19 +1,18 @@
 ---
 title: Angular 2 in ASP.NET Core 1.0 using Visual Studio Code and TypeScript
 tags:
-  - Angular2
-  - Asp.NET Core 1.0
+  - Angular
+  - Asp.NET Core
   - Visual Studio Code
 url: 375.html
 id: 375
 categories:
-  - Angular 2
-  - ASP.NET Core 1.0
+  - Angular  
   - TypeScript
 date: 2016-02-19 19:50:28
 ---
 
-![Angular 2](http://www.mithunvp.com/wp-content/uploads/2016/02/start-2-300x154.png)Angular 2 in ASP.NET Core 1.0 are going to redefine web development experience for developers. Thinking of creating ASP.NET website outside Visual Studio IDE was nightmare, but with advent of ASP.NET Core 1.0 as truly open source cross-platform technology it so exciting to create these apps without Visual Studio IDE In this tutorial I will summaries steps of  using Angular 2 in ASP.NET Core 1.0 using Visual Studio Code as editor not as IDE. These steps can be similar if want to work on Linux or Mac OS.
+Angular 2 in ASP.NET Core 1.0 are going to redefine web development experience for developers. Thinking of creating ASP.NET website outside Visual Studio IDE was nightmare, but with advent of ASP.NET Core 1.0 as truly open source cross-platform technology it so exciting to create these apps without Visual Studio IDE In this tutorial I will summaries steps of  using Angular 2 in ASP.NET Core 1.0 using Visual Studio Code as editor not as IDE. These steps can be similar if want to work on Linux or Mac OS.
 
 > Updated to Angular 2 RC1 on ASP.NET Core 1.0
 
@@ -28,7 +27,7 @@ Step 2: Create package.json, add Angular 2 and other packages then run npm insta
 ----------------------------------------------------------------------------------
 
 Angular 2 along with other dependent packages needs to be included in **package.json**. List of packages needed can be found from [5 min quickstart of Angular2 website](https://angular.io/docs/ts/latest/quickstart.html) Create **package.json** file using _ASPNET yeoman generator_ or manually create and copy below code. After that open folder containing project in command prompt and run **npm install** to install all the packages. Along with Angular 2, I have included bootstrap and Jquery packages so that I can use them later.
-
+{% codeblock lang:json %}
 {
     "version": "0.0.0",
     "name": "Angular2AspNetCoreDemo",
@@ -65,8 +64,8 @@ Angular 2 along with other dependent packages needs to be included in **package.
         "gulp-tsc": "^1.1.5"
     }
 }
-
-  \[caption id="attachment_378" align="alignleft" width="1266"\][![Angular 2](http://www.mithunvp.com/wp-content/uploads/2016/02/npminstall-ng2.png)](http://www.mithunvp.com/wp-content/uploads/2016/02/npminstall-ng2.png) package.json and NPM install (Older Image)\[/caption\] If you just observe now in explorer, **node_modules** folder will created with all packages downloaded as per _package.json_
+{% endcodeblock %}
+  [![package.json and NPM install (Older Image)](http://www.mithunvp.com/wp-content/uploads/2016/02/npminstall-ng2.png)](http://www.mithunvp.com/wp-content/uploads/2016/02/npminstall-ng2.png) If you just observe now in explorer, **node_modules** folder will created with all packages downloaded as per _package.json_
 
 Step 3: Moving Angular 2 files to _wwwroot_ using Gulp tasks
 ------------------------------------------------------------
@@ -81,7 +80,7 @@ Step 4: Creating TypeScript project using tsconfig.json
 > **tsconfig.json** is TypeScript configuration file which does tell compiler what needs to be with TS files.
 
 Create a folder "**_scripts_**", add _**tsconfig.json**_ using yo commands or add the file manually. Copy below code to _tsconfig.json_. It tells TypeScript compiler to move tranpiled TS files to "outDir" by targeting them es5 standards. Any TS files in _node_modules_ is excluded, _commonjs_ module loading is selected while initializing the JS files.
-
+{% codeblock lang:json %}
 {
   "compilerOptions": {
     "emitDecoratorMetadata": true,
@@ -102,7 +101,7 @@ Create a folder "**_scripts_**", add _**tsconfig.json**_ using yo commands or ad
     "typings/main.d.ts"
   \]
 }
-
+{% endcodeblock %}
 Step 5: Creating Gulp tasks to transpile TypeScript code
 --------------------------------------------------------
 
@@ -112,7 +111,7 @@ Step 6: Adding Gulp watch tasks to look for changes
 ---------------------------------------------------
 
 Imaging what if do any code changes in either Javascript, CSS or mostly importantly TypeScript files(they are doing actual Angular 2 work) and those changes are reflected instantly on browser. Yes, this is possible using Gulp tasks which is below. There are various ways to this, but Gulp Tasks are pretty easy to understand. Create **gulpfile.js** file and copy code
-
+{% codeblock lang:js %}
 var ts = require('gulp-typescript');
 var gulp = require('gulp');
 var clean = require('gulp-clean');
@@ -159,13 +158,13 @@ gulp.task('ts', function(done) {
 
 gulp.task('watch', \['watch.ts'\]);
 
-gulp.task('watch.ts', \['ts'\], function() {
-    return gulp.watch('scripts/*.ts', \['ts'\]);
+gulp.task('watch.ts', ['ts'], function() {
+    return gulp.watch('scripts/*.ts', ['ts']);
 });
 
-gulp.task('default', \['scriptsNStyles', 'watch'\]);
-
-The gulp tasks code under is self explanatory with commented lines, to give much better visual representation go through below image. You might think so much get started with Angular 2 in ASP.NET Core 1.0, not really this is one time operation; once done you can just create html pages, add TypeScript to work with Angular 2. \[caption id="attachment_380" align="aligncenter" width="1191"\][![Angular 2](http://www.mithunvp.com/wp-content/uploads/2016/02/gulpfileVisualRepresentaion.png)](http://www.mithunvp.com/wp-content/uploads/2016/02/gulpfileVisualRepresentaion.png) Gulp Tasks for Angular 2 in ASP.NET Core 1.0\[/caption\]
+gulp.task('default', ['scriptsNStyles', 'watch']);
+{% endcodeblock %}
+The gulp tasks code under is self explanatory with commented lines, to give much better visual representation go through below image. You might think so much get started with Angular 2 in ASP.NET Core 1.0, not really this is one time operation; once done you can just create html pages, add TypeScript to work with Angular 2.[![Gulp Tasks for Angular 2 in ASP.NET Core 1.0](http://www.mithunvp.com/wp-content/uploads/2016/02/gulpfileVisualRepresentaion.png)](http://www.mithunvp.com/wp-content/uploads/2016/02/gulpfileVisualRepresentaion.png)
 
 Step 7: Configure Build Tasks in Visual Studio Code
 ---------------------------------------------------
@@ -174,16 +173,16 @@ If we want to run all gulp tasks above on _Alt+Cntrl+B (i.e. Build)_, we need to
 
 >  **tasks.json** is Task Runner for Visual Studio Code
 
-Just do _Alt+Cntrl+B (i.e. Build), _it will prompt that no task runner is configured do you want one. Just click on "**Configure Task Runner**" and copy below code in it. \[caption id="attachment_381" align="aligncenter" width="1207"\][![Angular 2](http://www.mithunvp.com/wp-content/uploads/2016/02/taskRunner.png)](http://www.mithunvp.com/wp-content/uploads/2016/02/taskRunner.png) Configure Task Runner - tasks.json (older image)\[/caption\]
-
+Just do _Alt+Cntrl+B (i.e. Build), _it will prompt that no task runner is configured do you want one. Just click on "**Configure Task Runner**" and copy below code in it.[![Configure Task Runner - tasks.json (older image)](http://www.mithunvp.com/wp-content/uploads/2016/02/taskRunner.png)](http://www.mithunvp.com/wp-content/uploads/2016/02/taskRunner.png)
+{% codeblock lang:json %}
 {
     "version": "0.1.0",
     "command": "gulp",
     "isShellCommand": true,
-    "args": \[
+    "args": [
         "--no-color"
-    \],
-    "tasks": \[
+    ],
+    "tasks": [
 		{
 			"taskName": "scriptsNStyles",
 			"isBuildCommand": true,
@@ -215,14 +214,14 @@ Just do _Alt+Cntrl+B (i.e. Build), _it will prompt that no task runner is conf
 			"isBuildCommand": true,
 			"showOutput": "always"
 		}
-	\]
+	]
 }
-
+{% endcodeblock %}
 Step 8: Adding Angular 2 code & refer them in index.html
 --------------------------------------------------------
 
 From Angular 2 quick start link, it tells to create "**app.ts**" and "**boot.ts**" which acts as Angular component and bootstrap respectively. Just copy below code into _app.ts, boot.ts_ and _index.html. _We are set now, next step is running application.
-
+{% codeblock lang:ts %}
 ///<reference path="./../typings/browser/ambient/es6-shim/index.d.ts"/>
 import {bootstrap}    from '@angular/platform-browser-dynamic';
 import {AppComponent} from './app';
@@ -245,7 +244,8 @@ export class AppComponent {
         this.mySkill = this.skills\[1\];
     }
 }
-
+{% endcodeblock %}
+{% codeblock lang:html %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -271,12 +271,12 @@ export class AppComponent {
     <my-app>Loading...</my-app>    
 </body>
 </html>
-
+{% endcodeblock %}
 9\. Using Systemjs to load Angular 2 scripts
 --------------------------------------------
 
 If you observe "index.html" you will notice that we are referring _**systemjs.config.js**_, but where are Angular 2 related files. This is were the Systemjs configuration file will help us to load all necessary files. Create systemjs.config.js and copy below code. Configuration code is pretty simple - Looks for @Angular folder for packages, loads RxJs, hand written scripts related to application.
-
+{% codeblock lang:js %}
 (function(global) {
 
   // map tells the System loader where to look for things
@@ -323,10 +323,10 @@ If you observe "index.html" you will notice that we are referring _**systemjs.co
   System.config(config);
 
 })(this);
-
+{% endcodeblock %}
  
 
 10\. Running application using lite-server
 ------------------------------------------
 
-I prefer using **lite-server** when working with Visual Studio Code is that it does lots of things like open browser, syncing any changes and more. When in VS Code, press F1 --> go for "**Run Task**" and click "**default**" \- Gulp Task described above. It does create "**libs**", "**appScripts**" folder under _wwwroot_; ouput window shows that Gulp **watch** task is running and looking for changes. \[caption id="attachment_385" align="aligncenter" width="1266"\][![Angular 2](http://www.mithunvp.com/wp-content/uploads/2016/02/runningTasks.gif)](http://www.mithunvp.com/wp-content/uploads/2016/02/runningTasks.gif) Running Gulp Tasks in VS Code\[/caption\] Open **wwwroot** in console and type "_lite-server_" to see magic, everything works perfectly !! \[caption id="attachment_384" align="aligncenter" width="1266"\][![Everything get reflected on save !!](http://www.mithunvp.com/wp-content/uploads/2016/02/runHTML.gif)](http://www.mithunvp.com/wp-content/uploads/2016/02/runHTML.gif) Everything get reflected on save !!\[/caption\] This project is available on [Github](https://github.com/mithunvp/Angular2AspNetCoreDemo), have a look.  Also Checkout Angular 2 in ASP.NET Core 1.0 using [Visual Studio 2015 IDE](http://www.mithunvp.com/angular-2-in-asp-net-5-typescript-visual-studio-2015/).
+I prefer using **lite-server** when working with Visual Studio Code is that it does lots of things like open browser, syncing any changes and more. When in VS Code, press F1 --> go for "**Run Task**" and click "**default**" \- Gulp Task described above. It does create "**libs**", "**appScripts**" folder under _wwwroot_; ouput window shows that Gulp **watch** task is running and looking for changes.[![Running Gulp Tasks in VS Code](http://www.mithunvp.com/wp-content/uploads/2016/02/runningTasks.gif)](http://www.mithunvp.com/wp-content/uploads/2016/02/runningTasks.gif) Open **wwwroot** in console and type "_lite-server_" to see magic, everything works perfectly !! [![Everything get reflected on save !!](http://www.mithunvp.com/wp-content/uploads/2016/02/runHTML.gif)](http://www.mithunvp.com/wp-content/uploads/2016/02/runHTML.gif) Everything get reflected on save !! This project is available on [Github](https://github.com/mithunvp/Angular2AspNetCoreDemo), have a look.  Also Checkout Angular 2 in ASP.NET Core 1.0 using [Visual Studio 2015 IDE](http://www.mithunvp.com/angular-2-in-asp-net-5-typescript-visual-studio-2015/).

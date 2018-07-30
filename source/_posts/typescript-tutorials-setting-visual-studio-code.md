@@ -29,7 +29,7 @@ Why learn TypeScript?
 Step 1 - Install TypeScript using NPM and Visual Studio Code
 ------------------------------------------------------------
 
-TypeScript can be installed in two ways i.e. either throught NPM ([_Node Package Manager_](https://docs.npmjs.com/getting-started/installing-node)) or through Visual Studio Plugins. Our focus is to use Visual Studio Code (light weight editor from Microsoft), so we will install [TypeScript](https://www.typescriptlang.org/) using NPM. We will install NPM, Visual Studio and after that run command "_**npm install -g typescript**_" to install it. Also install Visual Studio Code. \[caption id="attachment_453" align="aligncenter" width="202"\][![typescript tutorials](http://www.mithunvp.com/wp-content/uploads/2016/05/typescript-1.png)](http://www.mithunvp.com/wp-content/uploads/2016/05/typescript-1.png) NPM, TypeScript installed successfully\[/caption\]
+TypeScript can be installed in two ways i.e. either throught NPM ([_Node Package Manager_](https://docs.npmjs.com/getting-started/installing-node)) or through Visual Studio Plugins. Our focus is to use Visual Studio Code (light weight editor from Microsoft), so we will install [TypeScript](https://www.typescriptlang.org/) using NPM. We will install NPM, Visual Studio and after that run command "_**npm install -g typescript**_" to install it. Also install Visual Studio Code.[![NPM, TypeScript installed successfully](http://www.mithunvp.com/wp-content/uploads/2016/05/typescript-1.png)](http://www.mithunvp.com/wp-content/uploads/2016/05/typescript-1.png)
 
 Step 2 - Building "Contact Manager" application using Typescript tutorials
 --------------------------------------------------------------------------
@@ -39,12 +39,12 @@ We will build a sample "Contact Manager" application by following Typescript tut
 Step 3 - Setting Task Runner to Transpile aka Compile TypeScript to JavaScript
 ------------------------------------------------------------------------------
 
-When we build now using _**Cntrl+Shift+B in VS code**_, we get this warning telling “_**No task runner configured**_”. Then click on “_Configure Task Runner_” to create _tasks.json_ file which is collection of Tasks for various tasks for TypeScript, Gulp, Grunt etc. Press _**Cntrl+Shift+B in VS code**_ and ollow below image for better understanding to create tasks.json. Select the Task Runner "_TypeScript with Watch Mode_", this will ensure that whenever any TS file gets modified & saved its compiled to JS file immediately. \[caption id="attachment_456" align="aligncenter" width="1100"\][![typescript tutorials](http://www.mithunvp.com/wp-content/uploads/2016/05/Video_2016-05-23_144107-big.gif)](http://www.mithunvp.com/wp-content/uploads/2016/05/Video_2016-05-23_144107-big.gif) Configure tasks.json (Task Runner in VS Code)\[/caption\] Create "_**tsconfig.json**_" file (TypeScript Configuration File) and  copy the below code, the _**compilerOptions**_ are explained as
+When we build now using _**Cntrl+Shift+B in VS code**_, we get this warning telling “_**No task runner configured**_”. Then click on “_Configure Task Runner_” to create _tasks.json_ file which is collection of Tasks for various tasks for TypeScript, Gulp, Grunt etc. Press _**Cntrl+Shift+B in VS code**_ and ollow below image for better understanding to create tasks.json. Select the Task Runner "_TypeScript with Watch Mode_", this will ensure that whenever any TS file gets modified & saved its compiled to JS file immediately.[![Configure tasks.json (Task Runner in VS Code)](http://www.mithunvp.com/wp-content/uploads/2016/05/Video_2016-05-23_144107-big.gif)](http://www.mithunvp.com/wp-content/uploads/2016/05/Video_2016-05-23_144107-big.gif) Create "_**tsconfig.json**_" file (TypeScript Configuration File) and  copy the below code, the _**compilerOptions**_ are explained as
 
 1.  "**--target**" tells TSC (TypeScript Compiler) to transpile all TS files to ES5 standard JS files,
 2.  "**--outDir**" is output directory of the transpiled JS files i.e. "jsScripts"
 3.  "**--sourceMap**" Help us in debugging typescript.
-
+{% codeblock lang:json %}
 {
     "compilerOptions": {
         "target": "es5", 
@@ -52,21 +52,21 @@ When we build now using _**Cntrl+Shift+B in VS code**_, we get this warning tell
         "sourceMap": true
     }    
 }
-
+{% endcodeblock %}
 Step 4 - Start writing the first TypeScript app.ts file & build it
 ------------------------------------------------------------------
 
 Let's start learning by creating "_**app.ts**_" file. You can name the file as per your wish.
 
 > _**.TS**_ files indicates its Typescript file.
-
+{% codeblock lang:ts %}
 class HelloTypeScript {
     constructor(public message: string) {       
     }
 }
 var hello = new HelloTypeScript("Hi Mithunvp.com !!")
 console.log(hello.message);
-
+{% endcodeblock %}
 After this, build the project "Cntrl+Shift+B"; you will notice that " _**jsScripts**_" folder gets created with _app.js_ & maps files. Now we are ready with run the project.
 
 Step 5 - Run the project to see output in console.
@@ -75,7 +75,7 @@ Step 5 - Run the project to see output in console.
 We successfully setup, build the TypeScript project for our TypeScript tutorials series. Its time to run. Follow the below steps Press "_**Cntrl+Shift+D**_" to open "**Debug**" panel; we will see "gear" like icon click to open _**launch.json**_. This file lets run the application. Copy the below code and paste it.
 
 > We need to select "Node" as environment to run application. TypeScript knowledge is not tied to Node itself.
-
+{% codeblock lang:json %}
 {
     "version": "0.2.0",
     "configurations": \[
@@ -112,9 +112,9 @@ We successfully setup, build the TypeScript project for our TypeScript tutorials
             "remoteRoot": null
         }
     \]
-}
+}{% endcodeblock %}
 
-Now press "F5" to see output in "Debug Console" as seen below \[caption id="attachment_457" align="aligncenter" width="488"\][![typescript tutorials](http://www.mithunvp.com/wp-content/uploads/2016/05/2016-05-23_160010.png)](http://www.mithunvp.com/wp-content/uploads/2016/05/2016-05-23_160010.png) Output seen in debug console\[/caption\]
+Now press "F5" to see output in "Debug Console" as seen below [![Output seen in debug console](http://www.mithunvp.com/wp-content/uploads/2016/05/2016-05-23_160010.png)](http://www.mithunvp.com/wp-content/uploads/2016/05/2016-05-23_160010.png)
 
 Step 6 - Debugging Typescript in VS Code
 ----------------------------------------
@@ -125,4 +125,4 @@ With intention to debug TypeScript code, also we had added "SourceMaps" & added 
 2.  As soon as it hits breakpoint, we see "local variables", "call stack".
 3.  When i cross the breakpoint by stepping through, we see message output in "debug console" and from apps.ts it moves to app.js.
 
-\[caption id="attachment_458" align="aligncenter" width="800"\][![typescript tutorials](http://www.mithunvp.com/wp-content/uploads/2016/05/Video_2016-05-23_160851.gif)](http://www.mithunvp.com/wp-content/uploads/2016/05/Video_2016-05-23_160851.gif) Debugging TypeScript files\[/caption\] What's next? We will learn TypeScript Basic Types and their usage in writing strongly typed application.
+[![Debugging TypeScript files](http://www.mithunvp.com/wp-content/uploads/2016/05/Video_2016-05-23_160851.gif)](http://www.mithunvp.com/wp-content/uploads/2016/05/Video_2016-05-23_160851.gif) What's next? We will learn TypeScript Basic Types and their usage in writing strongly typed application.

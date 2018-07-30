@@ -1,40 +1,37 @@
 ---
-title: Angular 2 CLI - Build Angular 2 apps using Command Line Interface
+title: Angular CLI - Build Angular apps using Command Line Interface
 url: 414.html
 id: 414
 categories:
-  - Angular 2
+  - Angular
 date: 2016-05-11 00:10:49
-tags:
+tags: AngularCLI
 ---
 
-[**_Angular 2 CLI _**aka Command Line Interface](https://cli.angular.io/) is developed to get started quickly for building Angular 2 apps, especially when the entire community felt that setting up Angular 2 development environment was cumbersome. With introduction of Angular CLI, it's now easier than ever to create, run builds, do E2E (end to end) tests, run apps and deploy Angular 2 application. In this article, I will build a very basic Angular 2 application exclusively using CLI. So let's started. What we will learn here?
+[**Angular 2 CLI **aka Command Line Interface](https://cli.angular.io/) is developed to get started quickly for building Angular  apps, especially when the entire community felt that setting up Angular 2 development environment was cumbersome. With introduction of Angular CLI, it's now easier than ever to create, run builds, do E2E (end to end) tests, run apps and deploy Angular 2 application. In this article, I will build a very basic Angular application exclusively using CLI. So let's started. What we will learn here?
 
-1.  Installing Angular 2 CLI using NPM.
-2.  Creating an Angular 2 application using command line interface
+1.  Installing Angular CLI using NPM.
+2.  Creating an Angular application using command line interface
 3.  Examine CLI created project structure.
-4.  Serve or Run Angular 2 application.
+4.  Serve or Run Angular application.
 5.  Create models and services to work with data.
 
-Installing Angular 2 CLI using NPM
+Installing Angular CLI using NPM
 ----------------------------------
 
-Ensure you have latest **NPM** and **Node** installed on your machine. After that run this command to install Angular 2 CLI globally.
+Ensure you have latest **NPM** and **Node** installed on your machine. After that run this command to install Angular CLI globally.
 
 npm install -g angular-cli
 
-OR
 
-npm install -g angular-cli@latest
-
-Creating an Angular 2 application using CLI
+Creating an Angular application using CLI
 -------------------------------------------
 
-We will be creating a simple "**OurPlanets**" application displaying list of our solar system planets Run the below command to create new Angular 2 app. "_OurPlanets_" is application name, the _**--prefix**_ option tells us that "_Planets_" will be added as prefix for project files.
+We will be creating a simple "**OurPlanets**" application displaying list of our solar system planets Run the below command to create new Angular app. "_OurPlanets_" is application name, the _**--prefix**_ option tells us that "_Planets_" will be added as prefix for project files.
 
 ng new OurPlanets --prefix Planets
 
-\[caption id="attachment_541" align="aligncenter" width="512"\][![angular 2 cli](http://www.mithunvp.com/wp-content/uploads/2016/05/createCLI.png)](http://www.mithunvp.com/wp-content/uploads/2016/05/createCLI.png) Running "ng new " command\[/caption\]
+[![Running "ng new " command](http://www.mithunvp.com/wp-content/uploads/2016/05/createCLI.png)](http://www.mithunvp.com/wp-content/uploads/2016/05/createCLI.png)
 
 1.  CLI command - **ng new** to create application
 2.  List of files created using CLI command
@@ -44,17 +41,17 @@ ng new OurPlanets --prefix Planets
 Examine CLI created "_OurPlanets_" project structure in Visual Studio Code
 --------------------------------------------------------------------------
 
-Open Visual Studio code, load this project to check out project structure got created by CLI \[caption id="attachment_543" align="aligncenter" width="286"\][![Angular 2 cli](http://www.mithunvp.com/wp-content/uploads/2016/05/projstru.png)](http://www.mithunvp.com/wp-content/uploads/2016/05/projstru.png) OurPlanets project structure\[/caption\]
+Open Visual Studio code, load this project to check out project structure got created by CLI [![OurPlanets project structure](http://www.mithunvp.com/wp-content/uploads/2016/05/projstru.png)](http://www.mithunvp.com/wp-content/uploads/2016/05/projstru.png)
 
 1.  "**e2e**" folder containing test files, configurations for performing end to end testing.
 2.  "**node_modules**" folder contains all packages restored as per _package.json_
 3.  "**src/**" folder is the main application development folder containing template HTML files, TS files, components.
 4.  "**main.ts,** tsconfig**.**json**, index.html etc**" are essential files needed for running application
-5.  "_**packages.json**_" contain essential file which contain reference to all packages needed for running Angular 2 app. See _.gitignore_ file also. Automatically "_OurPlanets_" application is GIT repo, which we can push it if needed.
+5.  "_**packages.json**_" contain essential file which contain reference to all packages needed for running Angular app. See _.gitignore_ file also. Automatically "_OurPlanets_" application is GIT repo, which we can push it if needed.
 
 Isn't it amazing just by running "ng new" command of Angular 2 CLI gives us so much stuff to get started.
 
-Serve or run "OurPlanets" Angular 2 apps
+Serve or run "OurPlanets" Angular apps
 ----------------------------------------
 
 Now that we have app with all dependencies, build it and run as shown in figure.
@@ -63,7 +60,7 @@ ng build
 
 ng serve
 
-Note: **ng build** command creates "dist/", a folder containing compiled, minified (if applied) Angular 2 application.
+Note: **ng build** command creates "dist/", a folder containing compiled, minified (if applied) Angular application.
 
 > Directly running **ng serve** will start _**webpack-dev-server**_ to run application, this won't create "**dist**" folder.
 
@@ -89,16 +86,16 @@ Note: class generating command lets have suffix with 'model', service generating
 > CLI also generates spec TS files used for unit testing
 
 Open _**planets.model.ts**_ file & copy below code, its really simple class with four fields.
-
+{% codeblock lang:ts %}
 export class Planets {
     position: number;
     name: string;
     distanceFromSun: number;
     description: string;
 }
-
+{% endcodeblock %}
 Open _**planets.service.ts**_ file to copy below code; it imports 'planets.model', **getPlanets** method which returns list of planets data. Nothing fancy, but still good enough
-
+{% codeblock lang:js %}
 import { Injectable } from '@angular/core';
 import { Planets } from './planets.model';
 
@@ -121,12 +118,12 @@ const PLANETSDATA: Planets\[\] = \[
   {position: 7, name: 'Uranus',distanceFromSun: 1800,  description: '84 earth years to orbit the sun' },
   {position: 8, name: 'Neptune',distanceFromSun: 2800,  description: '165 earth years to orbit the sun' }
 \];
-
+{% endcodeblock %}
 Loading Planets data on UI
 --------------------------
 
 Here we are importing **Planets** model & **PlanetsService** so that we can load data **app.component.ts**
-
+{% codeblock lang:js %}
 import { Component, OnInit } from '@angular/core';
 import { Planets, PlanetsService } from './shared';
 
@@ -144,17 +141,17 @@ export class AppComponent implements OnInit {
     this._planetservice.getPlanets().then(planets => this.planetsList = planets);
   }
 }
-
+{% endcodeblock %}
 #### app.component.html
-
+{% codeblock lang:js %}
 <ul>
     <li *ngFor="let planet of planetsList">{ {planet.name}}</li>    
 </ul>
-
+{% endcodeblock %}
 #### app.module.ts
 
 We need to provide any services details while loading application in **@NgModule** _**providers**_ in app.module.ts
-
+{% codeblock lang:js %}
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -176,8 +173,8 @@ import { AppComponent } from './app.component';
   bootstrap: \[AppComponent\]
 })
 export class AppModule { }
-
-Run **"ng serve"** command & open localhost:4200 in browser to see running application \[caption id="attachment_544" align="aligncenter" width="323"\][![angular 2 cli](http://www.mithunvp.com/wp-content/uploads/2016/05/runningApp.png)](http://www.mithunvp.com/wp-content/uploads/2016/05/runningApp.png) OurPlanets running on browser\[/caption\]
+{% endcodeblock %}
+Run **"ng serve"** command & open localhost:4200 in browser to see running application [![OurPlanets running on browser](http://www.mithunvp.com/wp-content/uploads/2016/05/runningApp.png)](http://www.mithunvp.com/wp-content/uploads/2016/05/runningApp.png)
 
 What's next?
 ------------

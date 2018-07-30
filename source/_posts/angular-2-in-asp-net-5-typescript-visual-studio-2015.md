@@ -1,5 +1,5 @@
 ---
-title: Starting Angular 2 in ASP.NET Core with TypeScript using Visual Studio IDE
+title: Starting Angular in ASP.NET Core with TypeScript using Visual Studio IDE
 tags:
   - Angular
   - Asp.NET Core
